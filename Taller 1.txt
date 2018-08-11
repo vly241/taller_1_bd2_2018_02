@@ -1,0 +1,117 @@
+PUNTO 1.
+-create database biblioteca;
+-use biblioteca;
+
+PUNTO 2.
+- create table libro (id_libro int(2) auto_increment primary key,titulo varchar(35),id_area int(2),constraint fk_area foreign key (id_area)references area(id_area));
+
+-create table area (id_area int(2) auto_increment primary key,area varchar(35));
+
+-create table tipo_libro (id_tipo int(2) auto_increment primary key,tipo varchar(35));
+
+PUNTO 3.
+-tabla area:
+MariaDB [biblioteca]> insert into area (id_area,area) values (01,'matematicas');
+Query OK, 1 row affected (0.06 sec)
+
+MariaDB [biblioteca]> insert into area (id_area,area) values (02,'ingles');
+Query OK, 1 row affected (0.06 sec)
+
+MariaDB [biblioteca]> insert into area (id_area,area) values (03,'informatica');
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [biblioteca]> insert into area (id_area,area) values (04,'fisica');
+Query OK, 1 row affected (0.05 sec)
+
+-Tabla libro:
+MariaDB [biblioteca]> insert into libro (id_libro, titulo,id_area) values ('l1','anal. sistemas','03');
+Query OK, 1 row affected (0.06 sec)
+
+MariaDB [biblioteca]> insert into libro (id_libro, titulo,id_area) values ('l2','bases datos','03');
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [biblioteca]> insert into libro (id_libro, titulo,id_area) values ('l3','ingles tomo i','02');
+Query OK, 1 row affected (0.05 sec)
+
+MariaDB [biblioteca]> insert into libro (id_libro, titulo,id_area) values ('l4','magnetismo','04');
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [biblioteca]> insert into libro (id_libro, titulo,id_area) values ('l5','electricidad','04');
+Query OK, 1 row affected (0.06 sec)
+
+MariaDB [biblioteca]> insert into libro (id_libro, titulo,id_area) values ('l6','algebra','01');
+Query OK, 1 row affected (0.05 sec)
+
+MariaDB [biblioteca]> insert into libro (id_libro, titulo,id_area) values ('l7','geometria','01');
+Query OK, 1 row affected (0.06 sec)
+
+MariaDB [biblioteca]> insert into libro (id_libro, titulo,id_area) values ('l8','integrales','01');
+Query OK, 1 row affected (0.06 sec)
+
+MariaDB [biblioteca]> insert into libro (id_libro, titulo,id_area) values ('l9','ingles tomo ii','02');
+Query OK, 1 row affected (0.05 sec)
+
+-Tabla id_tipo:
+MariaDB [biblioteca]> insert into tipo_libro (id_tipo,tipo) values ('t1','revista');
+Query OK, 1 row affected (0.06 sec)
+
+MariaDB [biblioteca]> insert into tipo_libro (id_tipo,tipo) values ('t2','tomo');
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [biblioteca]> insert into tipo_libro (id_tipo,tipo) values ('t3','manual');
+Query OK, 1 row affected (0.07 sec)
+
+PUNTO 4.
+- delete from libro where titulo= 'ingles tomo ii';
+Query OK, 1 row affected (0.04 sec)
+
+PUNTO 5.
+-select * from libro;
+
+PUNTO 6.
+- update area set area = 'idiomas'  where area = 'ingles';
+
+PUNTO 7.
+-update libro set titulo = 'anal. diseño' where titulo = 'anal. sistemas';
+
+PUNTO 8.
+-delete from libro where id_area= 2;
+
+PUNTO 9.
+-alter table libro add id_tipo varchar(2);
+
+PUNTO 10.
+-update libro set id_tipo ='t2';
+
+PUNTO 11.
+- alter table tipo_libro change tipo presentacion varchar(35);
+
+PUNTO 12.
+-alter table libro add constraint fk_tipo foreign key (id_tipo) references tipo_libro (id_tipo);
+
+PUNTO 13.
+- update libro set id_tipo = 't1' where titulo = 'integrales';
+
+PUNTO 14.
+-alter table libro drop foreign key fk_area;
+
+PUNTO 15.
+- alter table libro add foreign key (id_tipo)references tipo_libro(id_tipo) on update cascade on delete set null;
+
+PUNTO 16.
+-update area set id_area =10 where  area = 'informatica';
+
+PUNTO 17.
+- delete from area where area ='matematicas';
+
+PUNTO 18.
+-alter table libro drop foreign key fk_tipo;
+-alter table libro add foreign key (id_tipo)references tipo_libro(id_tipo) on update restrict on delete cascade;
+
+PUNTO 19.
+-delete from libro where id_tipo = 't2';
+
+PUNTO 20.
+- update tipo_libro set id_tipo ='t1' where presentacion ='revista';
+
+PUNTO 20.
